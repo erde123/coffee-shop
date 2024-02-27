@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_coffee_application/Page/profile/detail_page.dart';
+import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
@@ -48,7 +49,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 12),
                             decoration: BoxDecoration(
-                              color: Colors.green[600],
+                              color: primary,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
                               ),
@@ -148,7 +149,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.green),
+                                          color: primaryAlt),
                                     ),
                                     Text(
                                       "Ajak teman kamu download aplikasi Fore",
@@ -320,29 +321,65 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                               Text("Media Sosial"),
                               Row(
                                 children: [
-                                  CircleAvatar(
-                                    backgroundImage:
-                                        AssetImage("assets/image/whatsapp.png"),
-                                    backgroundColor: Colors.transparent,
-                                    radius: 18,
+                                  Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.black,
+                                      image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: AssetImage(
+                                            "assets/image/Instagram.png"),
+                                      ),
+                                    ),
                                   ),
-                                  CircleAvatar(
-                                    backgroundImage:
-                                        AssetImage("assets/image/whatsapp.png"),
-                                    backgroundColor: Colors.transparent,
-                                    radius: 18,
+                                  SizedBox(
+                                    width: 5,
                                   ),
-                                  CircleAvatar(
-                                    backgroundImage:
-                                        AssetImage("assets/image/whatsapp.png"),
-                                    backgroundColor: Colors.transparent,
-                                    radius: 18,
+                                  Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.black,
+                                      image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: AssetImage(
+                                            "assets/image/facebook.png"),
+                                      ),
+                                    ),
                                   ),
-                                  CircleAvatar(
-                                    backgroundImage:
-                                        AssetImage("assets/image/whatsapp.png"),
-                                    backgroundColor: Colors.transparent,
-                                    radius: 18,
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.black,
+                                      image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: AssetImage(
+                                            "assets/image/youtube.png"),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.black,
+                                      image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: AssetImage("assets/image/x.png"),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -466,14 +503,14 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             Text(
                               "Version 4.1.11",
                               style: TextStyle(
-                                  color: Colors.grey[400],
+                                  color: grey2,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 17),
                             ),
                             Text(
                               "Logout",
                               style: TextStyle(
-                                color: Colors.red,
+                                color: danger,
                                 fontSize: 17,
                                 fontWeight: FontWeight.w500,
                               ),

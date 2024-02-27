@@ -5,6 +5,7 @@ import 'package:flutter_coffee_application/Page/menu/menu_page.dart';
 import 'package:flutter_coffee_application/Page/profile/profile_page.dart';
 import 'package:flutter_coffee_application/component/promo_body.dart';
 import 'package:flutter_coffee_application/provider/data_provider.dart';
+import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
@@ -18,7 +19,13 @@ class Home extends ConsumerStatefulWidget {
 class _HomeState extends ConsumerState<Home> {
   int _selectedIndex = 0;
   final datad = false;
-  var screens = [HomePage(), ListProduk(type: "pick",), ProfilePage()];
+  var screens = [
+    HomePage(),
+    ListProduk(
+      type: "deliv",
+    ),
+    ProfilePage()
+  ];
 
   var listBottomNavigation = [
     BottomNavigationBarItem(
@@ -57,7 +64,7 @@ class _HomeState extends ConsumerState<Home> {
         unselectedItemColor: Colors.black,
         items: listBottomNavigation,
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.green[800],
+        selectedItemColor: primary,
         onTap: _onItemTapped,
       ),
       body: screens[_selectedIndex],
@@ -90,7 +97,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     children: [
                       Container(
                         height: 145,
-                        color: Colors.green[800],
+                        color: primary,
                         child: Container(
                           margin: EdgeInsets.only(left: 16, right: 16, top: 24),
                           child: Row(
@@ -127,7 +134,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                 width: 40,
                                 height: 40,
                                 decoration: BoxDecoration(
-                                  color: Colors.green[900],
+                                  color: primaryDark,
                                   shape: BoxShape.circle,
                                 ),
                                 child: InkWell(
@@ -182,7 +189,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                   Icon(
                                     Icons.adjust_sharp,
                                     size: 35,
-                                    color: Colors.green[900],
+                                    color: primary,
                                   ),
                                   SizedBox(
                                     width: 8,
@@ -192,7 +199,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.green[900],
+                                      color: primary,
                                     ),
                                   ),
                                 ],
@@ -225,6 +232,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 FlutterCarousel.builder(
                   options: CarouselOptions(
                     height: 300,
+                    aspectRatio: 10 / 8,
                     autoPlay: true,
                     autoPlayInterval: const Duration(seconds: 6),
                     initialPage: 0,
@@ -244,7 +252,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                           int pageViewIndex) =>
                       Container(
                     margin: EdgeInsets.symmetric(horizontal: 16),
-                    width: MediaQuery.of(context).size.width,
                     child: Center(
                       child: Image.asset('assets/image/image1.jpg'),
                     ),
@@ -278,7 +285,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                             side: BorderSide(
-                              color: Colors.green[900]!,
+                              color: primary,
                             ),
                           ),
                           clipBehavior: Clip.antiAlias,
@@ -286,7 +293,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ListProduk(type: "pick",)),
+                                  builder: (context) => const ListProduk(
+                                        type: "pick",
+                                      )),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
@@ -299,8 +308,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                                   Text(
                                     "Pick Up",
                                     style: TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: primary,
+                                    ),
                                   ),
                                   Expanded(
                                     child: Row(
@@ -316,12 +327,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                                         Flexible(
                                           flex: 2,
                                           child: CircleAvatar(
-                                            backgroundColor: Colors.green[200],
+                                            backgroundColor: primarySplash,
                                             radius: 23,
                                             child: Icon(
                                               Icons.shopping_bag,
                                               size: 30,
-                                              color: Colors.green[900],
+                                              color: primary,
                                             ),
                                           ),
                                         )
@@ -340,7 +351,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                             side: BorderSide(
-                              color: Colors.pink[600]!,
+                              color: secondary,
                             ),
                           ),
                           clipBehavior: Clip.antiAlias,
@@ -348,7 +359,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const ListProduk(type: "deliv",)),
+                                  builder: (context) => const ListProduk(
+                                        type: "deliv",
+                                      )),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
@@ -363,7 +376,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                     style: TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.pink[900],
+                                      color: secondary,
                                     ),
                                   ),
                                   Expanded(
@@ -380,11 +393,11 @@ class _HomePageState extends ConsumerState<HomePage> {
                                         ),
                                         CircleAvatar(
                                           radius: 23,
-                                          backgroundColor: Colors.pink[100],
+                                          backgroundColor: secondarySplash,
                                           child: Icon(
                                             Icons.motorcycle,
                                             size: 30,
-                                            color: Colors.pink[900],
+                                            color: secondary,
                                           ),
                                         )
                                       ],

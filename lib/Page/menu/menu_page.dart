@@ -5,6 +5,7 @@ import 'package:flutter_coffee_application/component/category_button.dart';
 import 'package:flutter_coffee_application/component/menu_body.dart';
 import 'package:flutter_coffee_application/component/recom_body.dart';
 import 'package:flutter_coffee_application/provider/data_provider.dart';
+import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';s
@@ -46,12 +47,14 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
                                 stops: [
-                                  0.2,
-                                  0.8,
+                                  0.1,
+                                  0.6,
+                                  0.9,
                                 ],
                                 colors: [
                                   Colors.white,
-                                  Colors.green[200]!,
+                                  primarySplash,
+                                  primaryAlt,
                                 ],
                               ),
                             ),
@@ -64,12 +67,12 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                     width: 70,
                                     height: 70,
                                     decoration: BoxDecoration(
-                                        color: Colors.green[200],
+                                        color: primaryAlt,
                                         shape: BoxShape.circle),
                                     child: Center(
                                       child: Icon(
                                         Icons.shopping_bag_rounded,
-                                        color: Colors.green[700],
+                                        color: primary,
                                         size: 40,
                                       ),
                                     ),
@@ -131,13 +134,13 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                     width: 40,
                                     height: 40,
                                     decoration: BoxDecoration(
-                                      color: Colors.green[100],
+                                      color: primarySplash,
                                       shape: BoxShape.circle,
                                     ),
                                     child: Center(
                                       child: Icon(
                                         Icons.house_rounded,
-                                        color: Colors.green[600],
+                                        color: primary,
                                         size: 40,
                                       ),
                                     ),
@@ -173,7 +176,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                           ),
                                           CircleAvatar(
                                             radius: 5,
-                                            backgroundColor: Colors.green[900],
+                                            backgroundColor: primary,
                                           ),
                                           SizedBox(
                                             width: 5,
@@ -182,7 +185,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                             "Terdekat",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w500,
-                                                color: Colors.green),
+                                                color: primaryAlt),
                                           ),
                                         ],
                                       ),
@@ -200,7 +203,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                       ),
                     )
                   : Container(
-                      height: 170,
+                      height: 250,
                       child: Stack(
                         children: [
                           Container(
@@ -210,12 +213,14 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
                                 stops: [
-                                  0.2,
-                                  0.8,
+                                  0.1,
+                                  0.6,
+                                  0.9,
                                 ],
                                 colors: [
                                   Colors.white,
-                                  Colors.pink[200]!,
+                                  secondarySplash,
+                                  secondaryAlt,
                                 ],
                               ),
                             ),
@@ -228,12 +233,12 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                     width: 70,
                                     height: 70,
                                     decoration: BoxDecoration(
-                                        color: Colors.pink[200],
+                                        color: secondarySplash,
                                         shape: BoxShape.circle),
                                     child: Center(
                                       child: Icon(
                                         Icons.motorcycle,
-                                        color: Colors.pink[700],
+                                        color: secondary,
                                         size: 50,
                                       ),
                                     ),
@@ -270,6 +275,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                             child: Container(
                               margin: EdgeInsets.symmetric(horizontal: 16),
                               width: MediaQuery.of(context).size.width,
+                              height: 160,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 16, vertical: 16),
                               decoration: BoxDecoration(
@@ -287,143 +293,166 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                   ),
                                 ],
                               ),
-                              child: Column(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                  Column(
                                     children: [
                                       Container(
                                         width: 40,
                                         height: 40,
                                         decoration: BoxDecoration(
-                                          color: Colors.pink[100],
+                                          color: secondarySplash,
                                           shape: BoxShape.circle,
                                         ),
                                         child: Center(
                                           child: Icon(
                                             Icons.house_rounded,
-                                            color: Colors.pink[600],
+                                            color: secondary,
                                             size: 40,
                                           ),
                                         ),
                                       ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Pakuwon City Mall, Surabaya",
-                                            style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Text(
-                                                "1,17 km",
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              CircleAvatar(
-                                                radius: 5,
-                                                backgroundColor:
-                                                    Colors.green[900],
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                "Terdekat",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.green),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                      Dash(
+                                        direction: Axis.vertical,
+                                        length: 40,
+                                        dashLength: 3,
                                       ),
-                                      SizedBox(
-                                        width: 10,
+                                      Container(
+                                        width: 40,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                          color: primarySplash,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.location_on,
+                                            color: primary,
+                                            size: 30,
+                                          ),
+                                        ),
                                       ),
-                                      Icon(Icons.arrow_forward_ios_rounded)
                                     ],
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          color: Colors.pink[100],
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.house_rounded,
-                                            color: Colors.pink[600],
-                                            size: 40,
-                                          ),
-                                        ),
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Pakuwon City Mall, Surabaya",
-                                            style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Text(
-                                                "1,17 km",
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              CircleAvatar(
-                                                radius: 5,
-                                                backgroundColor:
-                                                    Colors.green[900],
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                "Terdekat",
-                                                style: TextStyle(
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Pakuwon City Mall, Surabaya",
+                                                  style: TextStyle(
+                                                    fontSize: 17,
                                                     fontWeight: FontWeight.w500,
-                                                    color: Colors.green),
+                                                  ),
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  children: [
+                                                    Text(
+                                                      "1,17 km",
+                                                      maxLines: 2,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5,
+                                                    ),
+                                                    CircleAvatar(
+                                                      radius: 5,
+                                                      backgroundColor:
+                                                          primary,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5,
+                                                    ),
+                                                    Text(
+                                                      "Terdekat",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: primaryAlt),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Icon(
+                                                Icons.arrow_forward_ios_rounded)
+                                          ],
+                                        ),
+                                        Divider(),
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Flexible(
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "Rumah",
+                                                      style: TextStyle(
+                                                        fontSize: 17,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                    Flexible(
+                                                      child: Text(
+                                                        "Surabaya, Lidah Wetan, Lakarsantri, Surabaya, East Java 60213",
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                                    ),
+                                                    Flexible(
+                                                      child: Text(
+                                                        "wisata bukit mas 2 I9 no 12",
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: TextStyle(
+                                                            color: Colors
+                                                                .grey[500],
+                                                            fontSize: 13),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Icon(Icons
+                                                  .arrow_forward_ios_rounded)
                                             ],
                                           ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Icon(Icons.arrow_forward_ios_rounded)
-                                    ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -506,7 +535,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                           "Lihat Semua",
                                           style: TextStyle(
                                               fontSize: 15,
-                                              color: Colors.green[900]),
+                                              color: primary),
                                         ),
                                 ],
                               ),

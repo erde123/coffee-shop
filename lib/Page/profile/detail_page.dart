@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DetailPage extends ConsumerStatefulWidget {
@@ -34,7 +35,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                         Text(
                           "Akun Saya",
                           style:
-                              TextStyle(color: Colors.green[900], fontSize: 20),
+                              TextStyle(color: primary, fontSize: 20),
                         ),
                         SizedBox(
                           height: 20,
@@ -77,13 +78,13 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Colors.green[900]!,
+                          color: primary,
                           width: 2.0,
                         ),
                       ),
                       child: Icon(
                         Icons.close,
-                        color: Colors.green[900],
+                        color: primary,
                       ),
                     ),
                   ),
@@ -94,7 +95,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                   right: 0,
                   child: CircleAvatar(
                     radius: 72,
-                    backgroundColor: Colors.red[100],
+                    backgroundColor: danger,
                     backgroundImage: AssetImage("assets/image/comet.jpg"),
                   ),
                 ),
@@ -108,14 +109,14 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: Colors.green[900]!,
+                        color: primary,
                         width: 2.0,
                       ),
                       color: Colors.white
                     ),
                     child: Icon(
                       Icons.edit,
-                      color: Colors.green[900],
+                      color: primary,
                       size: 16,
                     ),
                   ),
@@ -146,13 +147,13 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: Colors.green[900]!,
+                                  color: primary,
                                   width: 2.0,
                                 ),
                               ),
                               child: Icon(
                                 Icons.edit,
-                                color: Colors.green[900],
+                                color: primary,
                                 size: 14,
                               ),
                             ),
@@ -176,13 +177,13 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: Colors.green[900]!,
+                                  color: primary,
                                   width: 2.0,
                                 ),
                               ),
                               child: Icon(
                                 Icons.edit,
-                                color: Colors.green[900],
+                                color: primary,
                                 size: 14,
                               ),
                             ),
@@ -206,13 +207,13 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: Colors.green[900]!,
+                                  color: primary,
                                   width: 2.0,
                                 ),
                               ),
                               child: Icon(
                                 Icons.edit,
-                                color: Colors.green[900],
+                                color: primary,
                                 size: 14,
                               ),
                             ),
@@ -236,13 +237,13 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: Colors.green[900]!,
+                                  color: primary,
                                   width: 2.0,
                                 ),
                               ),
                               child: Icon(
                                 Icons.edit,
-                                color: Colors.green[900],
+                                color: primary,
                                 size: 14,
                               ),
                             ),
@@ -279,7 +280,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                 ListTile(
                   leading: CircleAvatar(
                     backgroundColor: Colors.transparent,
-                    backgroundImage: AssetImage("assets/image/whatsapp.png"),
+                    backgroundImage: AssetImage("assets/image/google.png"),
                     radius: 20,
                   ),
                   title: Text("Google"),
@@ -317,7 +318,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                     children: [
                       Icon(
                         Icons.delete_outline_rounded,
-                        color: Colors.red,
+                        color: danger,
                         size: 30,
                       ),
                       Text(
@@ -325,7 +326,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
-                          color: Colors.red,
+                          color: danger,
                         ),
                       ),
                     ],
@@ -336,7 +337,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                 ),
                 Container(
                   height: 50,
-                  color: Colors.green[900],
+                  color: primary,
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
