@@ -7,7 +7,8 @@ import 'package:flutter_coffee_application/component/promo_body.dart';
 import 'package:flutter_coffee_application/provider/data_provider.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+// import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class Home extends ConsumerStatefulWidget {
   const Home({super.key});
@@ -26,7 +27,6 @@ class _HomeState extends ConsumerState<Home> {
     ),
     ProfilePage()
   ];
-
   var listBottomNavigation = [
     BottomNavigationBarItem(
         icon: Icon(Icons.home),
@@ -81,6 +81,16 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   var now = DateTime.now();
+  final List<String> imageList = [
+    'assets/image/image1.jpg',
+    'assets/image/image2.jpg',
+    'assets/image/image3.jpg',
+    'assets/image/image4.jpg',
+    'assets/image/image5.jpg',
+    'assets/image/image4.jpg',
+    'assets/image/image3.jpg',
+  ];
+  int _currentSlide = 0;
   @override
   Widget build(BuildContext context) {
     final listPromo = ref.watch(promoProvider);
@@ -181,46 +191,66 @@ class _HomePageState extends ConsumerState<HomePage> {
                               ),
                             ],
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Stack(
                             children: [
-                              Row(
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Icon(
-                                    Icons.adjust_sharp,
-                                    size: 35,
-                                    color: primary,
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.adjust_sharp,
+                                        size: 35,
+                                        color: primary,
+                                      ),
+                                      SizedBox(
+                                        width: 8,
+                                      ),
+                                      Text(
+                                        "94 Poin",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: primary,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(
-                                    "94 Poin",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: primary,
-                                    ),
+                                  Divider(),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Tukarkan poinmu dengan hadiah menarik",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.arrow_forward_ios_rounded,
+                                        size: 17,
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                              Divider(),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Tukarkan poinmu dengan hadiah menarik",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
+                              Positioned(
+                                right: 0,
+                                top: 0,
+                                child: Container(
+                                  width: 140,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: AssetImage(
+                                          "assets/image/coin.png"),
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.arrow_forward_ios_rounded,
-                                    size: 17,
-                                  ),
-                                ],
+                                ),
                               ),
                             ],
                           ),
@@ -229,31 +259,58 @@ class _HomePageState extends ConsumerState<HomePage> {
                     ],
                   ),
                 ),
-                FlutterCarousel.builder(
+                SizedBox(
+                  height: 20,
+                ),
+                CarouselSlider.builder(
+                  itemCount: imageList.length,
                   options: CarouselOptions(
-                    height: 300,
-                    aspectRatio: 10 / 8,
+                    height: MediaQuery.of(context).size.width * (9 / 16),
+                    aspectRatio: 16 / 9,
                     autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 6),
-                    initialPage: 0,
-                    showIndicator: true,
-                    enableInfiniteScroll: true,
-                    slideIndicator: CircularSlideIndicator(
-                      indicatorRadius: 3.5,
-                      itemSpacing: 15,
-                      currentIndicatorColor: Colors.black,
-                      indicatorBackgroundColor: Colors.grey,
-                    ),
-                    autoPlayCurve: Curves.easeInOut,
+                    autoPlayInterval: Duration(seconds: 6),
+                    initialPage: _currentSlide,
                     viewportFraction: 1.0,
+                    enlargeCenterPage: false,
+                    enableInfiniteScroll: true,
+                    scrollDirection: Axis.horizontal,
+                    pauseAutoPlayOnTouch: true,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _currentSlide = index;
+                      });
+                    },
                   ),
-                  itemCount: 3,
-                  itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) =>
-                      Container(
-                    margin: EdgeInsets.symmetric(horizontal: 16),
-                    child: Center(
-                      child: Image.asset('assets/image/image1.jpg'),
+                  itemBuilder:
+                      (BuildContext context, int itemIndex, int pageViewIndex) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(horizontal: 16),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          imageList[itemIndex],
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    imageList.length,
+                    (index) => Container(
+                      width: index == _currentSlide ? 10 : 4,
+                      height: 4,
+                      margin: EdgeInsets.symmetric(horizontal: 4),
+                      decoration: BoxDecoration(
+                        color:
+                            index == _currentSlide ? Colors.black : Colors.grey,
+                        borderRadius: index == _currentSlide
+                            ? BorderRadius.circular(2)
+                            : BorderRadius.circular(30),
+                      ),
                     ),
                   ),
                 ),

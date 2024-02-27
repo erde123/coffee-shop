@@ -37,11 +37,14 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DetailPage()),
-                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const DetailPage()),
+                          );
+                          print(MediaQuery.of(context).size.width);
+                        },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_application/style/color.dart';
 
 class ButtonCategory extends StatelessWidget {
   final bool tap;
@@ -20,10 +21,10 @@ class ButtonCategory extends StatelessWidget {
       child: Container(
         height: 32,
         decoration: BoxDecoration(
-            color: tap ? Colors.green : Colors.white,
+            color: tap ? primarySplash : Colors.white,
             border: Border.all(
-                width: 1, color: tap ? Colors.green : Colors.grey.shade400),
-            borderRadius: BorderRadius.circular(6)),
+                width: 1, color: tap ? primaryDark : grey1),
+            borderRadius: BorderRadius.circular(30)),
         child: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -31,8 +32,8 @@ class ButtonCategory extends StatelessWidget {
               title,
               style: TextStyle(
                 color: tap
-                    ? Colors.white
-                    : Colors.grey.shade600,
+                    ? primaryDark
+                    : grey1,
                     fontSize: 15
               ),
             ),
