@@ -22,10 +22,9 @@ class _HomeState extends ConsumerState<Home> {
   final datad = false;
   var screens = [
     HomePage(),
-    ListProduk(
-      type: "deliv",
-    ),
-    ProfilePage()
+    HomePage(),
+    HomePage(),
+    ProfilePage(),
   ];
   var listBottomNavigation = [
     BottomNavigationBarItem(
@@ -33,8 +32,12 @@ class _HomeState extends ConsumerState<Home> {
         label: 'Home',
         backgroundColor: Color.fromARGB(255, 236, 236, 236)),
     BottomNavigationBarItem(
-        icon: Icon(Icons.shop),
-        label: 'Menu',
+        icon: Icon(Icons.airplane_ticket),
+        label: 'Voucher',
+        backgroundColor: Color.fromARGB(255, 236, 236, 236)),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.file_copy),
+        label: 'Pesanan',
         backgroundColor: Color.fromARGB(255, 236, 236, 236)),
     BottomNavigationBarItem(
         icon: Icon(Icons.person),
@@ -52,20 +55,13 @@ class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(
-      //     appName,
-      //     style: TextStyle(fontWeight: FontWeight.bold, color: cWhite),
-      //   ),
-      //   centerTitle: true,
-      //   backgroundColor: cPrimary,
-      // ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.black,
         items: listBottomNavigation,
         currentIndex: _selectedIndex,
         selectedItemColor: primary,
         onTap: _onItemTapped,
+        showUnselectedLabels: true,
       ),
       body: screens[_selectedIndex],
     );
@@ -246,8 +242,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                                     color: Colors.transparent,
                                     image: DecorationImage(
                                       fit: BoxFit.fill,
-                                      image: AssetImage(
-                                          "assets/image/coin.png"),
+                                      image:
+                                          AssetImage("assets/image/coin.png"),
                                     ),
                                   ),
                                 ),

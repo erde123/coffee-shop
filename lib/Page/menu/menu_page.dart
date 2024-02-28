@@ -19,16 +19,107 @@ class ListProduk extends ConsumerStatefulWidget {
 }
 
 class _ListProdukState extends ConsumerState<ListProduk> {
+  final ScrollController _controller = ScrollController();
+  bool changeTop = false;
+
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      print(_controller.offset);
+      setState(() {
+        changeTop = _controller.offset != 0;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final category = ref.watch(categoryProvider);
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(),
-        actions: [
-          Icon(Icons.search),
-        ],
-        surfaceTintColor: Colors.transparent,
+      appBar: PreferredSize(
+        preferredSize: changeTop ? Size.fromHeight(80) : Size.fromHeight(50),
+        child: SafeArea(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 80,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 13, left: 16, right: 16),
+                    child: Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 22,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Expanded(
+                  child: AnimatedOpacity(
+                    duration: const Duration(seconds: 1),
+                    opacity: changeTop ? 1 : 0,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Delivery dari Store",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          "Pakuwon City Mall, Surabaya",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "1,17 km",
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            CircleAvatar(
+                              radius: 5,
+                              backgroundColor: primary,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Terdekat",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: primaryAlt),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12, left: 16, right: 16),
+                  child: Icon(
+                    Icons.search,
+                    size: 30,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       body: SafeArea(
         child: Container(
@@ -202,246 +293,206 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                         ],
                       ),
                     )
-                  : Container(
-                      height: 250,
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: 140,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                stops: [
-                                  0.1,
-                                  0.6,
-                                  0.9,
-                                ],
-                                colors: [
-                                  Colors.white,
-                                  secondarySplash,
-                                  secondaryAlt,
-                                ],
+                  : AnimatedCrossFade(
+                      duration: const Duration(seconds: 1),
+                      crossFadeState: changeTop
+                          ? CrossFadeState.showSecond
+                          : CrossFadeState.showFirst,
+                      firstCurve: Curves.easeOut,
+                      secondCurve: Curves.easeIn,
+                      sizeCurve: Curves.easeOut,
+                      firstChild: Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        height: 250,
+                        child: Stack(
+                          children: [
+                            Container(
+                              height: 140,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  stops: [
+                                    0.1,
+                                    0.6,
+                                    0.9,
+                                  ],
+                                  colors: [
+                                    Colors.white,
+                                    secondarySplash,
+                                    secondaryAlt,
+                                  ],
+                                ),
                               ),
-                            ),
-                            child: Container(
-                              margin: EdgeInsets.symmetric(horizontal: 16),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 70,
-                                    height: 70,
-                                    decoration: BoxDecoration(
-                                        color: secondarySplash,
-                                        shape: BoxShape.circle),
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.motorcycle,
-                                        color: secondary,
-                                        size: 50,
+                              child: Container(
+                                margin: EdgeInsets.symmetric(horizontal: 16),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 70,
+                                      height: 70,
+                                      decoration: BoxDecoration(
+                                          color: secondarySplash,
+                                          shape: BoxShape.circle),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.motorcycle,
+                                          color: secondary,
+                                          size: 50,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Delivery",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500,
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 10,
                                         ),
-                                      ),
-                                      Text("Segera diantar ke lokasimu"),
-                                    ],
-                                  ),
-                                ],
+                                        Text(
+                                          "Delivery",
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        Text("Segera diantar ke lokasimu"),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              margin: EdgeInsets.symmetric(horizontal: 16),
-                              width: MediaQuery.of(context).size.width,
-                              height: 160,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 16),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              child: Container(
+                                margin: EdgeInsets.symmetric(horizontal: 16),
+                                width: MediaQuery.of(context).size.width,
+                                height: 160,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 16),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                      offset: Offset(
+                                          0, 3), // changes position of shadow
+                                    ),
+                                  ],
                                 ),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          color: secondarySplash,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.house_rounded,
-                                            color: secondary,
-                                            size: 40,
-                                          ),
-                                        ),
-                                      ),
-                                      Dash(
-                                        direction: Axis.vertical,
-                                        length: 40,
-                                        dashLength: 3,
-                                      ),
-                                      Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                          color: primarySplash,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.location_on,
-                                            color: primary,
-                                            size: 30,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Expanded(
-                                    child: Column(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
                                       children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Pakuwon City Mall, Surabaya",
-                                                  style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    Text(
-                                                      "1,17 km",
-                                                      maxLines: 2,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
-                                                    SizedBox(
-                                                      width: 5,
-                                                    ),
-                                                    CircleAvatar(
-                                                      radius: 5,
-                                                      backgroundColor:
-                                                          primary,
-                                                    ),
-                                                    SizedBox(
-                                                      width: 5,
-                                                    ),
-                                                    Text(
-                                                      "Terdekat",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: primaryAlt),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                        Container(
+                                          width: 40,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                            color: secondarySplash,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Center(
+                                            child: Icon(
+                                              Icons.house_rounded,
+                                              color: secondary,
+                                              size: 40,
                                             ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Icon(
-                                                Icons.arrow_forward_ios_rounded)
-                                          ],
+                                          ),
                                         ),
-                                        Divider(),
-                                        Expanded(
-                                          child: Row(
+                                        Dash(
+                                          direction: Axis.vertical,
+                                          length: 40,
+                                          dashLength: 3,
+                                        ),
+                                        Container(
+                                          width: 40,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                            color: primarySplash,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Center(
+                                            child: Icon(
+                                              Icons.location_on,
+                                              color: primary,
+                                              size: 30,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        children: [
+                                          Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Flexible(
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Rumah",
-                                                      style: TextStyle(
-                                                        fontSize: 17,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Pakuwon City Mall, Surabaya",
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.w500,
                                                     ),
-                                                    Flexible(
-                                                      child: Text(
-                                                        "Surabaya, Lidah Wetan, Lakarsantri, Surabaya, East Java 60213",
-                                                        maxLines: 1,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      Text(
+                                                        "1,17 km",
+                                                        maxLines: 2,
                                                         overflow: TextOverflow
                                                             .ellipsis,
                                                       ),
-                                                    ),
-                                                    Flexible(
-                                                      child: Text(
-                                                        "wisata bukit mas 2 I9 no 12",
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
+                                                      SizedBox(
+                                                        width: 5,
+                                                      ),
+                                                      CircleAvatar(
+                                                        radius: 5,
+                                                        backgroundColor:
+                                                            primary,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 5,
+                                                      ),
+                                                      Text(
+                                                        "Terdekat",
                                                         style: TextStyle(
-                                                            color: Colors
-                                                                .grey[500],
-                                                            fontSize: 13),
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: primaryAlt),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
                                               SizedBox(
                                                 width: 10,
@@ -450,16 +501,71 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                                   .arrow_forward_ios_rounded)
                                             ],
                                           ),
-                                        ),
-                                      ],
+                                          Divider(),
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Flexible(
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        "Rumah",
+                                                        style: TextStyle(
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      Flexible(
+                                                        child: Text(
+                                                          "Surabaya, Lidah Wetan, Lakarsantri, Surabaya, East Java 60213",
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                      ),
+                                                      Flexible(
+                                                        child: Text(
+                                                          "wisata bukit mas 2 I9 no 12",
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .grey[500],
+                                                              fontSize: 13),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Icon(Icons
+                                                    .arrow_forward_ios_rounded)
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      secondChild: Center(child: SizedBox()),
                     ),
               SizedBox(
                 height: 30,
@@ -467,7 +573,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
               category.when(
                 data: (catData) {
                   return Container(
-                    height: 40, // Adjust height according to your needs
+                    height: 40,
                     width: MediaQuery.of(context).size.width,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -503,6 +609,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                 child: category.when(
                   data: (data) {
                     return ListView.builder(
+                      controller: _controller,
                       scrollDirection: Axis.vertical,
                       itemCount: data.length,
                       itemBuilder: (context, i) {
@@ -534,8 +641,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                       : Text(
                                           "Lihat Semua",
                                           style: TextStyle(
-                                              fontSize: 15,
-                                              color: primary),
+                                              fontSize: 15, color: primary),
                                         ),
                                 ],
                               ),
