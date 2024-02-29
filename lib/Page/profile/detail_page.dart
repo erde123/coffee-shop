@@ -12,8 +12,27 @@ class DetailPage extends ConsumerStatefulWidget {
 }
 
 class _DetailPageState extends ConsumerState<DetailPage> {
+  final TextEditingController _controller = TextEditingController(text: "RYAN DAVID");
+  var maxLength = 13;
+  var textLength = 0;
+  FocusNode _focus = FocusNode();
+
+  void initState() {
+    super.initState();
+    _focus.addListener(_onFocusChange);
+  }
+
+  void dispose() {
+    super.dispose();
+    _focus.removeListener(_onFocusChange);
+    _focus.dispose();
+  }
+
+  void _onFocusChange() {
+    debugPrint("Focus: ${_focus.hasFocus.toString()}");
+  }
+
   @override
-  
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -34,8 +53,7 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                         ),
                         Text(
                           "Akun Saya",
-                          style:
-                              TextStyle(color: primary, fontSize: 20),
+                          style: TextStyle(color: primary, fontSize: 20),
                         ),
                         SizedBox(
                           height: 20,
@@ -107,13 +125,12 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                     width: 25,
                     height: 25,
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: primary,
-                        width: 2.0,
-                      ),
-                      color: Colors.white
-                    ),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: primary,
+                          width: 2.0,
+                        ),
+                        color: Colors.white),
                     child: Icon(
                       Icons.edit,
                       color: primary,
@@ -134,58 +151,64 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextField(
-                        controller: TextEditingController(text: "RYAN DAVID"),
+                      TextFormField(
+                        focusNode: _focus,
+                        controller: _controller,
                         decoration: InputDecoration(
+                          counterText: '',
                           suffixIconConstraints:
                               BoxConstraints(minHeight: 24, minWidth: 24),
-                          suffixIcon: GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              width: 20,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: primary,
-                                  width: 2.0,
+                          suffixIcon: _focus.hasFocus
+                              ? Text(
+                                  "${textLength.toString()}/${maxLength.toString()}")
+                              : Container(
+                                  width: 20,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: primary,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.edit,
+                                    color: primary,
+                                    size: 14,
+                                  ),
                                 ),
-                              ),
-                              child: Icon(
-                                Icons.edit,
-                                color: primary,
-                                size: 14,
-                              ),
-                            ),
-                          ),
                           labelText: 'Username',
                         ),
+                        maxLength: maxLength,
+                        onChanged: (value) {
+                          setState(() {
+                            textLength = value.length;
+                          });
+                        },
                       ),
                       SizedBox(
                         height: 16,
                       ),
-                      TextField(
-                        controller: TextEditingController(text: "ryandavidtandean@gmail.com"),
+                      TextFormField(
+                        controller: TextEditingController(
+                            text: "ryandavidtandean@gmail.com"),
                         decoration: InputDecoration(
                           suffixIconConstraints:
                               BoxConstraints(minHeight: 24, minWidth: 24),
-                          suffixIcon: GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              width: 20,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: primary,
-                                  width: 2.0,
-                                ),
-                              ),
-                              child: Icon(
-                                Icons.edit,
+                          suffixIcon: Container(
+                            width: 20,
+                            height: 20,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
                                 color: primary,
-                                size: 14,
+                                width: 2.0,
                               ),
+                            ),
+                            child: Icon(
+                              Icons.edit,
+                              color: primary,
+                              size: 14,
                             ),
                           ),
                           labelText: 'Email',
@@ -256,7 +279,8 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                       ),
                       TextField(
                         readOnly: true,
-                        controller: TextEditingController(text: "+6281234534699"),
+                        controller:
+                            TextEditingController(text: "+6281234534699"),
                         decoration: InputDecoration(
                           labelText: 'Masukkan Nomor Ponsel',
                         ),

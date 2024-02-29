@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_coffee_application/Page/home.dart';
+import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
@@ -30,7 +31,19 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: TextStyle(
+            color: primaryDark,
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: primaryDark,
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: primaryDark, width: 2),
+          ),
+        ),
         useMaterial3: true,
       ),
       home: const Home(),

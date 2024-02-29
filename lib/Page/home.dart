@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_coffee_application/Page/menu/menu_page.dart';
 import 'package:flutter_coffee_application/Page/profile/profile_page.dart';
-import 'package:flutter_coffee_application/component/promo_body.dart';
+import 'package:flutter_coffee_application/component/Home/promo_body.dart';
 import 'package:flutter_coffee_application/provider/data_provider.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,19 +30,19 @@ class _HomeState extends ConsumerState<Home> {
     BottomNavigationBarItem(
         icon: Icon(Icons.home),
         label: 'Home',
-        backgroundColor: Color.fromARGB(255, 236, 236, 236)),
+        backgroundColor: Colors.white),
     BottomNavigationBarItem(
         icon: Icon(Icons.airplane_ticket),
         label: 'Voucher',
-        backgroundColor: Color.fromARGB(255, 236, 236, 236)),
+        backgroundColor: Colors.white),
     BottomNavigationBarItem(
         icon: Icon(Icons.file_copy),
         label: 'Pesanan',
-        backgroundColor: Color.fromARGB(255, 236, 236, 236)),
+        backgroundColor: Colors.white),
     BottomNavigationBarItem(
         icon: Icon(Icons.person),
         label: 'Akun',
-        backgroundColor: Color.fromARGB(255, 236, 236, 236)),
+        backgroundColor: Colors.white),
   ];
 
   void _onItemTapped(int index) {
@@ -56,7 +56,7 @@ class _HomeState extends ConsumerState<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.black,
+        unselectedItemColor: grey1,
         items: listBottomNavigation,
         currentIndex: _selectedIndex,
         selectedItemColor: primary,

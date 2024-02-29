@@ -513,9 +513,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             Text(
                               "Logout",
                               style: TextStyle(
-                                color: danger,
+                                color: dangerDark,
                                 fontSize: 17,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w800,
                               ),
                             )
                           ],

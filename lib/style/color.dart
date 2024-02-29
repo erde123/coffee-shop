@@ -75,6 +75,10 @@ Color get dangerSplash {
   return Color.fromARGB(255, 255, 126, 126);
 }
 
+Color get dangerDark {
+  return Color.fromARGB(255, 200, 27, 27);
+}
+
 Color get safe {
   return const Color.fromARGB(255, 134, 241, 108);
 }
