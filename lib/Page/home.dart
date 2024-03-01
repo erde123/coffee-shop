@@ -28,9 +28,7 @@ class _HomeState extends ConsumerState<Home> {
   ];
   var listBottomNavigation = [
     BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        label: 'Home',
-        backgroundColor: Colors.white),
+        icon: Icon(Icons.home), label: 'Home', backgroundColor: Colors.white),
     BottomNavigationBarItem(
         icon: Icon(Icons.airplane_ticket),
         label: 'Voucher',
@@ -40,9 +38,7 @@ class _HomeState extends ConsumerState<Home> {
         label: 'Pesanan',
         backgroundColor: Colors.white),
     BottomNavigationBarItem(
-        icon: Icon(Icons.person),
-        label: 'Akun',
-        backgroundColor: Colors.white),
+        icon: Icon(Icons.person), label: 'Akun', backgroundColor: Colors.white),
   ];
 
   void _onItemTapped(int index) {
@@ -612,8 +608,38 @@ class _HomePageState extends ConsumerState<HomePage> {
                 SizedBox(
                   height: 16,
                 ),
+                ListTile(
+                  leading: Icon(
+                    Icons.abc,
+                    size: 17,
+                  ),
+                  subtitle:
+                      Text("Fore Coffee sudah tersertifikasi halal oleh MUI"),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    size: 17,
+                  ),
+                ),
+                Divider(),
+                                ListTile(
+                  leading: Icon(
+                    Icons.abc,
+                    size: 17,
+                  ),
+                  subtitle:
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Dirjen Perlindungan Konsumen dan Tata Tertib Niaga."),
+                          Text("Kementrian Perdagangan Republik Indonesia"),
+                          SizedBox(height: 10,),
+                          Text("Whatsapp Dirjen PKTN: 0853-1111-1010", style: TextStyle(fontWeight: FontWeight.bold),),
+                        ],
+                      ),
+                ),
+                Divider(),
                 SizedBox(
-                  height: 100,
+                  height: 60,
                 ),
               ],
             ),

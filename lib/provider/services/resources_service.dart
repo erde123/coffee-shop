@@ -138,22 +138,18 @@ class ApiServices {
     {
       "_id": "12",
       "name": "Recommended",
-      "categoryType": "121212",
     },
     {
       "_id": "123",
       "name": "Buttercream Temptation",
-      "categoryType": "121212",
     },
     {
       "_id": "12",
       "name": "Deli",
-      "categoryType": "121212",
     },
     {
       "_id": "123",
       "name": "Others",
-      "categoryType": "121212",
     },
   ];
 
