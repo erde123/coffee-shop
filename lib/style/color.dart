@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 
 class ThemeStyle {
   Color primary;
-  Color primaryAlt;
-  Color primarySplash;
+  Color primaryLight;
+  Color primaryPastel;
   Color primaryDark;
   Color secondary;
-  Color secondaryAlt;
-  Color secondarySplash;
+  Color secondaryLight;
+  Color secondaryPastel;
 
   ThemeStyle({
     required this.primary,
-    required this.primaryAlt,
-    required this.primarySplash,
+    required this.primaryLight,
+    required this.primaryPastel,
     required this.primaryDark,
     required this.secondary,
-    required this.secondaryAlt,
-    required this.secondarySplash,
+    required this.secondaryLight,
+    required this.secondaryPastel,
   });
 }
 
@@ -25,26 +25,25 @@ int colorIndex = 0;
 List<ThemeStyle> themeStyle = [
   ThemeStyle(
     primary: const Color.fromARGB(255, 31, 114, 16),
-    primaryAlt: const Color.fromARGB(255, 70, 210, 45),
-    primarySplash: Color.fromARGB(255, 182, 255, 170),
+    primaryLight: const Color.fromARGB(255, 70, 210, 45),
+    primaryPastel: Color.fromARGB(255, 182, 255, 170),
     primaryDark: Color.fromARGB(255, 11, 68, 1),
     secondary: const Color.fromARGB(255, 205, 36, 93),
-    secondaryAlt: const Color.fromARGB(255, 229, 72, 124),
-    secondarySplash: const Color.fromARGB(255, 255, 139, 178),
+    secondaryLight: const Color.fromARGB(255, 229, 72, 124),
+    secondaryPastel: const Color.fromARGB(255, 255, 139, 178),
   ),
 ];
-
 
 Color get primary {
   return themeStyle[colorIndex].primary;
 }
 
-Color get primarySplash {
-  return themeStyle[colorIndex].primarySplash;
+Color get primaryPastel {
+  return themeStyle[colorIndex].primaryPastel;
 }
 
-Color get primaryAlt {
-  return themeStyle[colorIndex].primaryAlt;
+Color get primaryLight {
+  return themeStyle[colorIndex].primaryLight;
 }
 
 Color get primaryDark {
@@ -55,12 +54,12 @@ Color get secondary {
   return themeStyle[colorIndex].secondary;
 }
 
-Color get secondaryAlt{
-  return themeStyle[colorIndex].secondaryAlt;
+Color get secondaryLight {
+  return themeStyle[colorIndex].secondaryLight;
 }
 
-Color get secondarySplash {
-  return themeStyle[colorIndex].secondarySplash;
+Color get secondaryPastel {
+  return themeStyle[colorIndex].secondaryPastel;
 }
 
 Color get warning {

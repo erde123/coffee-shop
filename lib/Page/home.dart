@@ -380,7 +380,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                         Flexible(
                                           flex: 2,
                                           child: CircleAvatar(
-                                            backgroundColor: primarySplash,
+                                            backgroundColor: primaryPastel,
                                             radius: 23,
                                             child: Icon(
                                               Icons.shopping_bag,
@@ -446,7 +446,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                         ),
                                         CircleAvatar(
                                           radius: 23,
-                                          backgroundColor: secondarySplash,
+                                          backgroundColor: secondaryPastel,
                                           child: Icon(
                                             Icons.motorcycle,
                                             size: 30,

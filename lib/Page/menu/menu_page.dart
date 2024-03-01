@@ -37,11 +37,12 @@ class _ListProdukState extends ConsumerState<ListProduk> {
     final category = ref.watch(categoryProvider);
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: changeTop ? Size.fromHeight(80) : Size.fromHeight(50),
+        preferredSize: changeTop ? Size.fromHeight(100) : Size.fromHeight(50),
         child: SafeArea(
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height: 80,
+            margin: EdgeInsets.only(top: 20),
+            height: 100,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,15 +51,12 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                   onTap: () => Navigator.pop(context),
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(top: 13, left: 16, right: 16),
+                        const EdgeInsets.only(left: 16, right: 16),
                     child: Icon(
                       Icons.arrow_back_ios_new,
                       size: 22,
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 8,
                 ),
                 Expanded(
                   child: AnimatedOpacity(
@@ -68,6 +66,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                       fit: BoxFit.fill,
                       alignment: Alignment.topCenter,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -106,7 +105,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                 "Terdekat",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    color: primaryAlt),
+                                    color: primaryLight),
                               ),
                             ],
                           ),
@@ -116,7 +115,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 12, left: 16, right: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16),
                   child: Icon(
                     Icons.search,
                     size: 30,

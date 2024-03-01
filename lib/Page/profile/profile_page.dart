@@ -152,7 +152,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
-                                          color: primaryAlt),
+                                          color: primaryLight),
                                     ),
                                     Text(
                                       "Ajak teman kamu download aplikasi Fore",

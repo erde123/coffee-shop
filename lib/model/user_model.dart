@@ -1,7 +1,8 @@
 class ModelUser {
   String? id, name, email, gender, phone, image;
-  DateTime? birthday;
+  DateTime? birthday, createdAt;
   int? point = 0;
+
 
   ModelUser({
     required this.id,
@@ -11,6 +12,7 @@ class ModelUser {
     required this.phone,
     this.image,
     this.birthday,
+    this.createdAt,
     this.point
   });
 
@@ -23,6 +25,7 @@ class ModelUser {
         phone: json['phone'],
         image: json['image'],
         birthday: json['birthday'],
+        createdAt: json['createdAt'],
         point: json['point']);
         
   }

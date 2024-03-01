@@ -21,7 +21,7 @@ class ButtonCategory extends StatelessWidget {
       child: Container(
         height: 32,
         decoration: BoxDecoration(
-            color: tap ? primarySplash : Colors.white,
+            color: tap ? primaryPastel : Colors.white,
             border: Border.all(
                 width: 1, color: tap ? primaryDark : grey1),
             borderRadius: BorderRadius.circular(30)),

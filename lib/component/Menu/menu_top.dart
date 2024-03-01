@@ -30,13 +30,13 @@ class MenuTop extends ConsumerWidget {
                 colors: type == "deliv"
                     ? [
                         Colors.white,
-                        secondarySplash,
-                        secondaryAlt,
+                        secondaryPastel,
+                        secondaryLight,
                       ]
                     : [
                         Colors.white,
-                        primarySplash,
-                        primaryAlt,
+                        primaryPastel,
+                        primaryLight,
                       ],
               ),
             ),
@@ -49,7 +49,7 @@ class MenuTop extends ConsumerWidget {
                     width: 70,
                     height: 70,
                     decoration: BoxDecoration(
-                      color: type == "deliv" ? secondarySplash : primarySplash,
+                      color: type == "deliv" ? secondaryPastel : primaryPastel,
                       shape: BoxShape.circle,
                     ),
                     child: Center(
@@ -126,7 +126,7 @@ class MenuTop extends ConsumerWidget {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                color: secondarySplash,
+                                color: secondaryPastel,
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
@@ -146,7 +146,7 @@ class MenuTop extends ConsumerWidget {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                color: primarySplash,
+                                color: primaryPastel,
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
@@ -204,7 +204,7 @@ class MenuTop extends ConsumerWidget {
                                             "Terdekat",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w500,
-                                                color: primaryAlt),
+                                                color: primaryLight),
                                           ),
                                         ],
                                       ),
@@ -294,7 +294,7 @@ class MenuTop extends ConsumerWidget {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: primarySplash,
+                            color: primaryPastel,
                             shape: BoxShape.circle,
                           ),
                           child: Center(
@@ -343,7 +343,7 @@ class MenuTop extends ConsumerWidget {
                                   "Terdekat",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
-                                      color: primaryAlt),
+                                      color: primaryLight),
                                 ),
                               ],
                             ),
