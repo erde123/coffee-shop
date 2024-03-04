@@ -8,7 +8,7 @@ import 'package:flutter_coffee_application/component/Menu/recom_body.dart';
 import 'package:flutter_coffee_application/provider/data_provider.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';s
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class ListProduk extends ConsumerStatefulWidget {
   final String type;
@@ -19,11 +19,31 @@ class ListProduk extends ConsumerStatefulWidget {
 }
 
 class _ListProdukState extends ConsumerState<ListProduk> {
+  final itemKey = GlobalKey();
   final ScrollController _controller = ScrollController();
+  final itemController = ItemScrollController();
+  final itemListener = ItemPositionsListener.create();
+  final ScrollOffsetListener scrollOffsetListener =
+      ScrollOffsetListener.create();
+
+  Future scrollToItem(index) async {
+    itemController.scrollTo(
+      index: index,
+      duration: Duration(seconds: 1),
+    );
+  }
+
   bool changeTop = false;
 
   void initState() {
     super.initState();
+    itemListener.itemPositions.addListener(() {
+      final indices =
+          itemListener.itemPositions.value.map((item) => item.index).toList();
+      setState(() {
+        changeTop = indices[0] != 0;
+      });
+    });
     _controller.addListener(() {
       // print(_controller.offset);
       setState(() {
@@ -50,8 +70,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16),
+                    padding: const EdgeInsets.only(left: 16, right: 16),
                     child: Icon(
                       Icons.arrow_back_ios_new,
                       size: 22,
@@ -164,7 +183,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                           child: ButtonCategory(
                               tap: false,
                               index: index,
-                              onPressed: () => {},
+                              onPressed: () => scrollToItem(index),
                               title: catData[index].name),
                         );
                       },
@@ -187,10 +206,12 @@ class _ListProdukState extends ConsumerState<ListProduk> {
               Expanded(
                 child: category.when(
                   data: (data) {
-                    return ListView.builder(
-                      controller: _controller,
+                    return ScrollablePositionedList.builder(
+                      itemScrollController: itemController,
+                      itemPositionsListener: itemListener,
                       scrollDirection: Axis.vertical,
                       itemCount: data.length,
+                      // scrollOffsetListener: ,
                       itemBuilder: (context, i) {
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.start,

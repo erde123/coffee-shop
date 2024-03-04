@@ -621,21 +621,26 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ),
                 ),
                 Divider(),
-                                ListTile(
+                ListTile(
                   leading: Icon(
                     Icons.abc,
                     size: 17,
                   ),
-                  subtitle:
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Dirjen Perlindungan Konsumen dan Tata Tertib Niaga."),
-                          Text("Kementrian Perdagangan Republik Indonesia"),
-                          SizedBox(height: 10,),
-                          Text("Whatsapp Dirjen PKTN: 0853-1111-1010", style: TextStyle(fontWeight: FontWeight.bold),),
-                        ],
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          "Dirjen Perlindungan Konsumen dan Tata Tertib Niaga."),
+                      Text("Kementrian Perdagangan Republik Indonesia"),
+                      SizedBox(
+                        height: 10,
                       ),
+                      Text(
+                        "Whatsapp Dirjen PKTN: 0853-1111-1010",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
                 Divider(),
                 SizedBox(
