@@ -24,10 +24,10 @@ int colorIndex = 0;
 
 List<ThemeStyle> themeStyle = [
   ThemeStyle(
-    primary: const Color.fromARGB(255, 31, 114, 16),
-    primaryLight: const Color.fromARGB(255, 70, 210, 45),
-    primaryPastel: Color.fromARGB(255, 182, 255, 170),
-    primaryDark: Color.fromARGB(255, 11, 68, 1),
+    primary: const Color.fromARGB(255, 142, 95, 11),
+    primaryLight: Color.fromARGB(255, 255, 177, 43),
+    primaryPastel: Color.fromARGB(255, 237, 173, 63),
+    primaryDark: Color.fromARGB(255, 142, 95, 11),
     secondary: const Color.fromARGB(255, 205, 36, 93),
     secondaryLight: const Color.fromARGB(255, 229, 72, 124),
     secondaryPastel: const Color.fromARGB(255, 255, 139, 178),

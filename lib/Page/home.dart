@@ -74,13 +74,13 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   var now = DateTime.now();
   final List<String> imageList = [
-    'assets/image/image1.jpg',
-    'assets/image/image2.jpg',
-    'assets/image/image3.jpg',
-    'assets/image/image4.jpg',
-    'assets/image/image5.jpg',
-    'assets/image/image4.jpg',
-    'assets/image/image3.jpg',
+    'https://scontent.cdninstagram.com/v/t51.2885-15/430900967_386066304180273_3960130638635763083_n.webp?stp=dst-jpg_e35&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMDgweDEzNTAuc2RyIn0&_nc_ht=scontent.cdninstagram.com&_nc_cat=109&_nc_ohc=gIc8QfCeVsAAX958XZ-&edm=APs17CUBAAAA&ccb=7-5&ig_cache_key=MzMxNDcyOTQ2NzMwMTU3MDc3MA%3D%3D.2-ccb7-5&oh=00_AfCQ8uLMq-UeUezEwYMiu6I8awGP_YC0SOO0c5fH9NJaog&oe=65E7688D&_nc_sid=10d13b',
+    // 'assets/image/image2.jpg',
+    // 'assets/image/image3.jpg',
+    // 'assets/image/image4.jpg',
+    // 'assets/image/image5.jpg',
+    // 'assets/image/image4.jpg',
+    // 'assets/image/image3.jpg',
   ];
   int _currentSlide = 0;
   @override
@@ -106,29 +106,42 @@ class _HomePageState extends ConsumerState<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Column(
+                              Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    now.hour >= 5 && now.hour < 11
-                                        ? 'Selamat Pagi,'
-                                        : now.hour >= 11 && now.hour < 15
-                                            ? 'Selamat Siang,'
-                                            : now.hour >= 15 && now.hour < 19
-                                                ? 'Selamat Sore,'
-                                                : 'Selamat Malam,',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.white,
+                                  ClipRRect(
+                                    child: Image.asset(
+                                      'assets/image/logo.png',
+                                      scale: 3.5,
                                     ),
                                   ),
-                                  Text(
-                                    'RYAN DAVID',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        now.hour >= 5 && now.hour < 11
+                                            ? 'Selamat Pagi,'
+                                            : now.hour >= 11 && now.hour < 15
+                                                ? 'Selamat Siang,'
+                                                : now.hour >= 15 &&
+                                                        now.hour < 19
+                                                    ? 'Selamat Sore,'
+                                                    : 'Selamat Malam,',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Noel',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -279,7 +292,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                       margin: EdgeInsets.symmetric(horizontal: 16),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
+                        child: Image.network(
                           imageList[itemIndex],
                           fit: BoxFit.fill,
                         ),
