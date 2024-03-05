@@ -12,7 +12,9 @@ class DetailPage extends ConsumerStatefulWidget {
 }
 
 class _DetailPageState extends ConsumerState<DetailPage> {
-  final TextEditingController _controller = TextEditingController(text: "RYAN DAVID");
+  bool validate = false;
+  final TextEditingController _controller =
+      TextEditingController(text: "RYAN DAVID");
   var maxLength = 13;
   var textLength = 0;
   FocusNode _focus = FocusNode();
@@ -308,11 +310,16 @@ class _DetailPageState extends ConsumerState<DetailPage> {
                     radius: 20,
                   ),
                   title: Text("Google"),
-                  trailing: Switch(
-                    // This bool value toggles the switch.
-                    value: true,
-                    activeColor: Colors.green[700],
-                    onChanged: (bool value) {},
+                  trailing: Switch.adaptive(
+                    activeTrackColor: primary,
+                    inactiveTrackColor: grey3,
+                    inactiveThumbColor: grey1,
+                    value: validate,
+                    onChanged: (bool value) {
+                      setState(() {
+                        validate = value;
+                      });
+                    },
                   ),
                 ),
                 SizedBox(

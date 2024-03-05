@@ -1,7 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_application/Page/onBoarding.dart';
 import 'package:flutter_coffee_application/Page/home.dart';
 import 'package:flutter_coffee_application/style/color.dart';
+import 'package:flutter_coffee_application/style/typhography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+// Future main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   runApp(const ProviderScope(child: MyApp()));
+// }
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -33,20 +43,21 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: TextStyle(
-            color: primaryDark,
+            color: primary,
           ),
+          hintStyle: body3(color: primary),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
               color: primaryDark,
             ),
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: primaryDark, width: 2),
+            borderSide: BorderSide(color: primary, width: 3),
           ),
         ),
         useMaterial3: true,
       ),
-      home: const Home(),
+      home: const OnBoarding(),
     );
   }
 }

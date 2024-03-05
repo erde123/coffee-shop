@@ -7,7 +7,7 @@ import 'package:flutter_coffee_application/component/Home/promo_body.dart';
 import 'package:flutter_coffee_application/provider/data_provider.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -134,7 +134,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                         ),
                                       ),
                                       Text(
-                                        'Noel',
+                                        'Ryan David',
                                         style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,

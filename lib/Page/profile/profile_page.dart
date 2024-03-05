@@ -43,7 +43,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             MaterialPageRoute(
                                 builder: (context) => const DetailPage()),
                           );
-                          print(MediaQuery.of(context).size.width);
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
