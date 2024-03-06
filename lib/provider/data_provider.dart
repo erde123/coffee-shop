@@ -3,7 +3,7 @@
 import 'package:flutter_coffee_application/model/category_model.dart';
 import 'package:flutter_coffee_application/model/menu_model.dart';
 import 'package:flutter_coffee_application/model/promo_model.dart';
-import 'package:flutter_coffee_application/provider/services/resources_service.dart';
+import 'package:flutter_coffee_application/resource/resources_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final apiProvider = Provider<ApiServices>((ref) => ApiServices());

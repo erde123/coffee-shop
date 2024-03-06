@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_coffee_application/Page/onBoarding.dart';
+import 'package:flutter_coffee_application/Page/OnBoarding.dart';
 import 'package:flutter_coffee_application/Page/home.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_coffee_application/style/typhography.dart';

@@ -190,7 +190,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             Navigator.push(
                               context,
                               PageTransition(
-                                  child: SignUp(),
+                                  child: SignUp(googleSignIn: false,),
                                   type: PageTransitionType.rightToLeft),
                             );
                           },

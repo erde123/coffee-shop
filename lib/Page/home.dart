@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_coffee_application/Page/menu/menu_page.dart';
 import 'package:flutter_coffee_application/Page/profile/profile_page.dart';
+import 'package:flutter_coffee_application/Page/scan.dart';
 import 'package:flutter_coffee_application/component/Home/promo_body.dart';
 import 'package:flutter_coffee_application/provider/data_provider.dart';
 import 'package:flutter_coffee_application/style/color.dart';
@@ -23,6 +24,7 @@ class _HomeState extends ConsumerState<Home> {
   var screens = [
     HomePage(),
     HomePage(),
+    QRViewExample(),
     HomePage(),
     ProfilePage(),
   ];
@@ -30,8 +32,12 @@ class _HomeState extends ConsumerState<Home> {
     BottomNavigationBarItem(
         icon: Icon(Icons.home), label: 'Home', backgroundColor: Colors.white),
     BottomNavigationBarItem(
-        icon: Icon(Icons.airplane_ticket),
+        icon: Icon(Icons.discount),
         label: 'Voucher',
+        backgroundColor: Colors.white),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.qr_code_2_rounded),
+        label: 'QR',
         backgroundColor: Colors.white),
     BottomNavigationBarItem(
         icon: Icon(Icons.file_copy),
@@ -47,7 +53,6 @@ class _HomeState extends ConsumerState<Home> {
     });
   }
 
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,15 +79,16 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   var now = DateTime.now();
   final List<String> imageList = [
-    'https://scontent.cdninstagram.com/v/t51.2885-15/430900967_386066304180273_3960130638635763083_n.webp?stp=dst-jpg_e35&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMDgweDEzNTAuc2RyIn0&_nc_ht=scontent.cdninstagram.com&_nc_cat=109&_nc_ohc=gIc8QfCeVsAAX958XZ-&edm=APs17CUBAAAA&ccb=7-5&ig_cache_key=MzMxNDcyOTQ2NzMwMTU3MDc3MA%3D%3D.2-ccb7-5&oh=00_AfCQ8uLMq-UeUezEwYMiu6I8awGP_YC0SOO0c5fH9NJaog&oe=65E7688D&_nc_sid=10d13b',
-    // 'assets/image/image2.jpg',
-    // 'assets/image/image3.jpg',
-    // 'assets/image/image4.jpg',
-    // 'assets/image/image5.jpg',
-    // 'assets/image/image4.jpg',
-    // 'assets/image/image3.jpg',
+    // 'https://scontent.cdninstagram.com/v/t51.2885-15/430900967_386066304180273_3960130638635763083_n.webp?stp=dst-jpg_e35&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMDgweDEzNTAuc2RyIn0&_nc_ht=scontent.cdninstagram.com&_nc_cat=109&_nc_ohc=gIc8QfCeVsAAX958XZ-&edm=APs17CUBAAAA&ccb=7-5&ig_cache_key=MzMxNDcyOTQ2NzMwMTU3MDc3MA%3D%3D.2-ccb7-5&oh=00_AfCQ8uLMq-UeUezEwYMiu6I8awGP_YC0SOO0c5fH9NJaog&oe=65E7688D&_nc_sid=10d13b',
+    'assets/image/image2.jpg',
+    'assets/image/image3.jpg',
+    'assets/image/image4.jpg',
+    'assets/image/image5.jpg',
+    'assets/image/image4.jpg',
+    'assets/image/image3.jpg',
   ];
   int _currentSlide = 0;
+
   @override
   Widget build(BuildContext context) {
     final listPromo = ref.watch(promoProvider);
@@ -149,7 +155,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                                 width: 40,
                                 height: 40,
                                 decoration: BoxDecoration(
-                                  color: primaryDark,
                                   shape: BoxShape.circle,
                                 ),
                                 child: InkWell(
@@ -292,7 +297,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                       margin: EdgeInsets.symmetric(horizontal: 16),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
+                        child:
+                            // Image.network(
+                            //   imageList[itemIndex],
+                            //   fit: BoxFit.fill,
+                            // ),
+                            Image.asset(
                           imageList[itemIndex],
                           fit: BoxFit.fill,
                         ),

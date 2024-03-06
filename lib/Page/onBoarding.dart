@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_coffee_application/Page/auth/login.dart';
+import 'package:flutter_coffee_application/Page/auth/signup.dart';
 import 'package:flutter_coffee_application/Page/home.dart';
 import 'package:flutter_coffee_application/component/Button.dart';
 import 'package:flutter_coffee_application/style/color.dart';
@@ -108,7 +109,16 @@ class _OnBoardingState extends ConsumerState<OnBoarding> {
                   height: 16,
                 ),
                 ButtonOutline(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                          child: SignUp(
+                            googleSignIn: false,
+                          ),
+                          type: PageTransitionType.rightToLeft),
+                    );
+                  },
                   width: MediaQuery.of(context).size.width - 32,
                   height: 42,
                   child: Row(
@@ -143,8 +153,7 @@ class _OnBoardingState extends ConsumerState<OnBoarding> {
                     Navigator.push(
                       context,
                       PageTransition(
-                          child: Home(),
-                          type: PageTransitionType.rightToLeft),
+                          child: Home(), type: PageTransitionType.rightToLeft),
                     );
                   },
                 ),

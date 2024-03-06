@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_coffee_application/Page/home.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../component/Button.dart';
@@ -11,7 +12,8 @@ import '../../style/color.dart';
 import '../../style/typhography.dart';
 
 class SignUp extends ConsumerStatefulWidget {
-  const SignUp({super.key});
+  bool googleSignIn;
+  SignUp({super.key, required this.googleSignIn});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SignUpState();
@@ -129,6 +131,7 @@ class _SignUpState extends ConsumerState<SignUp> {
                         Column(
                           children: [
                             Visibility(
+                              visible: widget.googleSignIn,
                               child: Container(
                                 margin: const EdgeInsets.only(top: 30),
                                 width: MediaQuery.of(context).size.width,
