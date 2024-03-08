@@ -4,7 +4,7 @@ import 'package:flutter_coffee_application/model/category_model.dart';
 import 'package:flutter_coffee_application/model/menu_model.dart';
 import 'package:flutter_coffee_application/model/promo_model.dart';
 
-// import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 
 class ApiServices {
   final List<Map<String, dynamic>> body = [

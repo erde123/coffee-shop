@@ -1,121 +1,70 @@
-import 'dart:developer';
-import 'dart:io';
+// ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_coffee_application/style/typhography.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:http/http.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
-class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _QRViewExampleState();
-}
-
-class _QRViewExampleState extends State<QRViewExample> {
-  Barcode? result;
-  QRViewController? controller;
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-
-  // In order to get hot reload to work we need to pause the camera if the platform
-  // is android, or resume the camera if the platform is iOS.
-  @override
-  void reassemble() {
-    super.reassemble();
-    if (Platform.isAndroid) {
-      controller!.pauseCamera();
-    }
-    controller!.resumeCamera();
-  }
+class QRCode extends StatelessWidget {
+  const QRCode({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: _buildQrView(context),
+          SizedBox(
+            height: 30,
           ),
-          Positioned(
-            top: 60,
-            left: 0,
-            right: 0,
-            child: Align(
-              child: Text(
-                "Scan kode QR untuk menambah point",
-                style: h3(color: Colors.white),
+          Text(
+            "Show My Code",
+            style: h2(),
+          ),
+          SizedBox(height: 16),
+          Flexible(
+            child: Text(
+              "Tunjukkan QR Code ini ke kasir untuk mendapatkan point",
+              style: body1(),
+              maxLines: 3,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Divider(),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 400,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(12),
+                ),
+                color: primary),
+            child: Center(
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                  color: Colors.white,
+                ),
+                child: QrImageView(
+                  data: '1234567890',
+                  version: QrVersions.auto,
+                  size: 200.0,
+                ),
               ),
             ),
           ),
-          Positioned(
-              bottom: 40,
-              left: 0,
-              right: 0,
-              child: GestureDetector(
-                onTap: () async {
-                  await controller?.toggleFlash();
-                  setState(() {});
-                },
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 30,
-                  child: Icon(
-                    Icons.flashlight_on,
-                    color: primary,
-                    size: 30,
-                  ),
-                ),
-              )),
         ],
       ),
     );
-  }
-
-  Widget _buildQrView(BuildContext context) {
-    // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
-    var scanArea = (MediaQuery.of(context).size.width < 400 ||
-            MediaQuery.of(context).size.height < 400)
-        ? 150.0
-        : 300.0;
-    // To ensure the Scanner view is properly sizes after rotation
-    // we need to listen for Flutter SizeChanged notification and update controller
-    return QRView(
-      key: qrKey,
-      onQRViewCreated: _onQRViewCreated,
-      overlay: QrScannerOverlayShape(
-          borderColor: Colors.red,
-          borderRadius: 10,
-          borderLength: 30,
-          borderWidth: 10,
-          cutOutSize: scanArea),
-      onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
-    );
-  }
-
-  void _onQRViewCreated(QRViewController controller) {
-    setState(() {
-      this.controller = controller;
-    });
-    controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-      });
-    });
-  }
-
-  void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
-    log('${DateTime.now().toIso8601String()}_onPermissionSet $p');
-    if (!p) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('no Permission')),
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
   }
 }

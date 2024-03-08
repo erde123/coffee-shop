@@ -1,12 +1,16 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, avoid_unnecessary_containers, sized_box_for_whitespace, no_leading_underscores_for_local_identifiers
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_coffee_application/Page/menu/menu_page.dart';
 import 'package:flutter_coffee_application/Page/profile/profile_page.dart';
 import 'package:flutter_coffee_application/Page/scan.dart';
 import 'package:flutter_coffee_application/component/Home/promo_body.dart';
-import 'package:flutter_coffee_application/provider/data_provider.dart';
+import 'package:flutter_coffee_application/resource/provider/auth/auth_provider.dart';
+import 'package:flutter_coffee_application/resource/provider/data_provider.dart';
 import 'package:flutter_coffee_application/style/color.dart';
+import 'package:flutter_coffee_application/style/typhography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -19,15 +23,25 @@ class Home extends ConsumerStatefulWidget {
 }
 
 class _HomeState extends ConsumerState<Home> {
+  // final users = FirebaseAuth.instance.currentUser;
   int _selectedIndex = 0;
   final datad = false;
+
   var screens = [
     HomePage(),
     HomePage(),
-    QRViewExample(),
+    QRCode(),
     HomePage(),
     ProfilePage(),
   ];
+
+  var screensNotLogin = [
+    HomePage(),
+    HomePage(),
+    HomePage(),
+    ProfilePage(),
+  ];
+
   var listBottomNavigation = [
     BottomNavigationBarItem(
         icon: Icon(Icons.home), label: 'Home', backgroundColor: Colors.white),
@@ -38,6 +52,21 @@ class _HomeState extends ConsumerState<Home> {
     BottomNavigationBarItem(
         icon: Icon(Icons.qr_code_2_rounded),
         label: 'QR',
+        backgroundColor: Colors.white),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.file_copy),
+        label: 'Pesanan',
+        backgroundColor: Colors.white),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.person), label: 'Akun', backgroundColor: Colors.white),
+  ];
+
+  var listBottomNavigationNotLogin = [
+    BottomNavigationBarItem(
+        icon: Icon(Icons.home), label: 'Home', backgroundColor: Colors.white),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.discount),
+        label: 'Voucher',
         backgroundColor: Colors.white),
     BottomNavigationBarItem(
         icon: Icon(Icons.file_copy),
@@ -58,13 +87,17 @@ class _HomeState extends ConsumerState<Home> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: grey1,
-        items: listBottomNavigation,
+        items: ref.watch(isLogin)
+            ? listBottomNavigation
+            : listBottomNavigationNotLogin,
         currentIndex: _selectedIndex,
         selectedItemColor: primary,
         onTap: _onItemTapped,
         showUnselectedLabels: true,
       ),
-      body: screens[_selectedIndex],
+      body: ref.watch(isLogin)
+          ? screens[_selectedIndex]
+          : screensNotLogin[_selectedIndex],
     );
   }
 }
@@ -146,7 +179,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         ),
-                                      ),
+                                      )
                                     ],
                                   ),
                                 ],
@@ -177,92 +210,95 @@ class _HomePageState extends ConsumerState<HomePage> {
                           ),
                         ),
                       ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 16),
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 12),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset:
-                                    Offset(0, 3), // changes position of shadow
+                      Visibility(
+                        visible: ref.watch(isLogin),
+                        child: Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 16),
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 12),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
                               ),
-                            ],
-                          ),
-                          child: Stack(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.adjust_sharp,
-                                        size: 35,
-                                        color: primary,
-                                      ),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      Text(
-                                        "94 Poin",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Stack(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.adjust_sharp,
+                                          size: 35,
                                           color: primary,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Divider(),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Tukarkan poinmu dengan hadiah menarik",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
+                                        SizedBox(
+                                          width: 8,
                                         ),
+                                        Text(
+                                          "94 Poin",
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: primary,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Divider(),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Tukarkan poinmu dengan hadiah menarik",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward_ios_rounded,
+                                          size: 17,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: Container(
+                                    width: 140,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image:
+                                            AssetImage("assets/image/coin.png"),
                                       ),
-                                      Icon(
-                                        Icons.arrow_forward_ios_rounded,
-                                        size: 17,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Positioned(
-                                right: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 140,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image:
-                                          AssetImage("assets/image/coin.png"),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

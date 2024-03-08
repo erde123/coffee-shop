@@ -5,7 +5,7 @@ import 'package:flutter_coffee_application/component/Menu/category_button.dart';
 import 'package:flutter_coffee_application/component/Menu/menu_body.dart';
 import 'package:flutter_coffee_application/component/Menu/menu_top.dart';
 import 'package:flutter_coffee_application/component/Menu/recom_body.dart';
-import 'package:flutter_coffee_application/provider/data_provider.dart';
+import 'package:flutter_coffee_application/resource/provider/data_provider.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';

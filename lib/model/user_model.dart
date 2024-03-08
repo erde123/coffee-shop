@@ -1,6 +1,6 @@
 class ModelUser {
   String? id, name, email, gender, phone, image;
-  DateTime? birthday, createdAt;
+  String? birthday, createdAt;
   int? point = 0;
 
 
