@@ -1,7 +1,8 @@
 class ModelUser {
-  String? id, name, email, gender, phone, image;
+  String? id, name, email, gender, phone, image, roles;
   String? birthday, createdAt;
   int? point = 0;
+  //roles
 
 
   ModelUser({
@@ -13,7 +14,8 @@ class ModelUser {
     this.image,
     this.birthday,
     this.createdAt,
-    this.point
+    this.point,
+    this.roles,
   });
 
   factory ModelUser.fromJson(Map<String, dynamic> json) {
@@ -26,7 +28,7 @@ class ModelUser {
         image: json['image'],
         birthday: json['birthday'],
         createdAt: json['createdAt'],
-        point: json['point']);
-        
+        point: json['point'],
+        roles: json['roles']);
   }
 }

@@ -21,28 +21,4 @@ class AuthServices {
 
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
-
-  final List<Map<String, dynamic>> body = [
-    {
-      "id": "123",
-      "name": "Ryan David",
-      "gender": "Pria",
-      "phone": "081234567899",
-      "birthday": "2004-02-29",
-      "createdAt": "2004-02-29",
-      "point": 100
-    },
-  ];
-
-  Future<dynamic> fetchLoginData(var user) async {
-    final link = Uri.parse("$url/imavi/users/login");
-    Map<String, String> data = {"user": user};
-    var bodys = jsonEncode(data);
-    // final response = await http.post(
-    //   link,
-    //   body: bodys,
-    // );
-    List<ModelUser> result = body.map((e) => ModelUser.fromJson(e)).toList();
-    return result;
-  }
 }

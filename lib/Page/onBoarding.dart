@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_application/Page/admin/scanqr.dart';
 import 'package:flutter_coffee_application/Page/auth/login.dart';
 import 'package:flutter_coffee_application/Page/auth/signup.dart';
 import 'package:flutter_coffee_application/Page/home.dart';
@@ -20,7 +21,6 @@ class OnBoarding extends ConsumerStatefulWidget {
 }
 
 class _OnBoardingState extends ConsumerState<OnBoarding> {
-
   final List<String> imageList = [
     'assets/image/ver1.jpeg',
     'assets/image/ver2.jpeg',
@@ -92,12 +92,6 @@ class _OnBoardingState extends ConsumerState<OnBoarding> {
                   ButtonOutline(
                     onPressed: () {
                       AuthServices().signInWithGoogle();
-                      // Navigator.push(
-                      //   context,
-                      //   PageTransition(
-                      //       child: Home(),
-                      //       type: PageTransitionType.rightToLeft),
-                      // );
                     },
                     width: MediaQuery.of(context).size.width - 32,
                     height: 42,
@@ -135,6 +129,23 @@ class _OnBoardingState extends ConsumerState<OnBoarding> {
                         context,
                         PageTransition(
                             child: Home(),
+                            type: PageTransitionType.rightToLeft),
+                      );
+                    },
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(foregroundColor: Colors.white),
+                    child: Text(
+                      "Admin",
+                      style: h3(
+                        color: primary,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                            child: ScanQr(),
                             type: PageTransitionType.rightToLeft),
                       );
                     },
