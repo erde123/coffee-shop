@@ -125,27 +125,10 @@ class _OnBoardingState extends ConsumerState<OnBoarding> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         PageTransition(
                             child: Home(),
-                            type: PageTransitionType.rightToLeft),
-                      );
-                    },
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(foregroundColor: Colors.white),
-                    child: Text(
-                      "Admin",
-                      style: h3(
-                        color: primary,
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                            child: ScanQr(),
                             type: PageTransitionType.rightToLeft),
                       );
                     },

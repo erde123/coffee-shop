@@ -1,8 +1,11 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_application/resource/provider/auth/auth_provider.dart';
+import 'package:flutter_coffee_application/resource/services/auth/auth_services.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_coffee_application/style/typhography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +22,10 @@ class _ScanQrState extends ConsumerState<ScanQr> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   Barcode? result;
   QRViewController? controller;
+  void signUserOut() async {
+    await AuthServices().signOut();
+    ref.watch(isLogin.notifier).update((state) => false);
+  }
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -52,6 +59,21 @@ class _ScanQrState extends ConsumerState<ScanQr> {
                 ),
               ),
             ),
+            Positioned(
+                bottom: 40,
+                right: 20,
+                child: InkWell(
+                  onTap: signUserOut,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 30,
+                    child: Icon(
+                      Icons.exit_to_app_sharp,
+                      color: primary,
+                      size: 30,
+                    ),
+                  ),
+                )),
             Positioned(
               bottom: 40,
               left: 0,

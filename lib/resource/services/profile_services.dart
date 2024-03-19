@@ -1,8 +1,5 @@
-import 'dart:convert';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_coffee_application/model/user_model.dart';
-
-import '../const_resource.dart';
 
 class profileServices {
   final List<Map<String, dynamic>> body = [
@@ -18,15 +15,8 @@ class profileServices {
     },
   ];
 
-  Future<dynamic> fetchLoginData(var user) async {
-    final link = Uri.parse("$url/imavi/users/login");
-    Map<String, String> data = {"user": user};
-    var bodys = jsonEncode(data);
-    // final response = await http.post(
-    //   link,
-    //   body: bodys,
-    // );
-    ModelUser data2 = ModelUser.fromJson(jsonDecode(bodys));
-    return data2;
+  Future<ModelUser> fetchLoginData(var user) async {
+    final userData = body.first;
+    return ModelUser.fromJson(userData);
   }
 }

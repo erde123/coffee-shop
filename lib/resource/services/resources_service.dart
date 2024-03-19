@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_coffee_application/model/category_model.dart';
-import 'package:flutter_coffee_application/model/menu_model.dart';
+import 'package:flutter_coffee_application/model/product_model.dart';
 import 'package:flutter_coffee_application/model/promo_model.dart';
 
 import 'package:http/http.dart' as http;
@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 class ApiServices {
   final List<Map<String, dynamic>> body = [
     {
+      "id": "1",
       "nama": "Air Mineral",
       "deskripsi":
           "ini air mineral yang tidak berwarna karena bening dengan tutup botol berwarna biru dan botol dengan warna transparan",
@@ -17,6 +18,7 @@ class ApiServices {
       "category": "deli",
     },
     {
+      "id": "1",
       "nama": "Air Mineral",
       "deskripsi": "ini air mineral",
       "harga": "10000",
@@ -24,6 +26,7 @@ class ApiServices {
       "category": "deli",
     },
     {
+      "id": "1",
       "nama": "Air Mineral",
       "deskripsi": "ini air mineral",
       "harga": "10000",
@@ -31,6 +34,15 @@ class ApiServices {
       "category": "deli",
     },
     {
+      "id": "1",
+      "nama": "Air Mineral",
+      "deskripsi": "ini air mineral",
+      "harga": "10000",
+      "image": "assets/image/comet.jpg",
+      "category": "others",
+    },
+    {
+      "id": "1",
       "nama": "Air Mineral",
       "deskripsi": "ini air mineral",
       "harga": "10000",
@@ -45,6 +57,7 @@ class ApiServices {
       "category": "others",
     },
     {
+      "id": "1",
       "nama": "Air Mineral",
       "deskripsi": "ini air mineral",
       "harga": "10000",
@@ -52,13 +65,7 @@ class ApiServices {
       "category": "others",
     },
     {
-      "nama": "Air Mineral",
-      "deskripsi": "ini air mineral",
-      "harga": "10000",
-      "image": "assets/image/comet.jpg",
-      "category": "others",
-    },
-    {
+      "id": "1",
       "nama": "Air Mineral",
       "deskripsi": "ini air mineral",
       "harga": "10000",
@@ -66,6 +73,7 @@ class ApiServices {
       "category": "recommended",
     },
     {
+      "id": "1",
       "nama": "Air Mineral",
       "deskripsi": "ini air mineral",
       "harga": "10000",
@@ -73,6 +81,7 @@ class ApiServices {
       "category": "recommended",
     },
     {
+      "id": "1",
       "nama": "Air Mineral",
       "deskripsi": "ini air mineral",
       "harga": "10000",
@@ -80,6 +89,7 @@ class ApiServices {
       "category": "recommended",
     },
     {
+      "id": "1",
       "nama": "Air Mineral",
       "deskripsi": "ini air mineral",
       "harga": "10000",
@@ -87,7 +97,7 @@ class ApiServices {
       "category": "recommended",
     },
   ];
-  Future<List<ModelMenu>> getMenu() async {
+  Future<List<ModelProduct>> getMenu() async {
     // Map<String, String> headers = {
     //   'Id': '619c3c2e29baa215519da64d',
     //   'Secret': '360039ed-79a6-4853-8304-c7b21e166f5f',
@@ -108,7 +118,7 @@ class ApiServices {
     //   throw Exception(response.reasonPhrase);
     // }
     try {
-      List<ModelMenu> result = body.map((e) => ModelMenu.fromJson(e)).toList();
+      List<ModelProduct> result = body.map((e) => ModelProduct.fromJson(e)).toList();
       return result;
     } catch (e) {
       print("Error in getNotifikasi(): $e");

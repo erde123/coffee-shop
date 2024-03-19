@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_coffee_application/component/formatter/rupiah.dart';
-import 'package:flutter_coffee_application/model/menu_model.dart';
+import 'package:flutter_coffee_application/model/product_model.dart';
 
 class MenuBody extends StatelessWidget {
-  final ModelMenu list;
+  final ModelProduct list;
   const MenuBody({super.key, required this.list});
 
   @override

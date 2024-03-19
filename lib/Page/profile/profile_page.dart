@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_coffee_application/Page/OnBoarding.dart';
+import 'package:flutter_coffee_application/Page/auth/auth_page.dart';
 import 'package:flutter_coffee_application/Page/profile/detail_page.dart';
 import 'package:flutter_coffee_application/component/profile/iconSosMed.dart';
 import 'package:flutter_coffee_application/resource/provider/auth/auth_provider.dart';
@@ -21,8 +22,8 @@ class ProfilePage extends ConsumerStatefulWidget {
 
 class _ProfilePageState extends ConsumerState<ProfilePage> {
   void signUserOut() {
-    ref.watch(isLogin.notifier).update((state) => true);
     FirebaseAuth.instance.signOut();
+    ref.watch(isLogin.notifier).update((state) => false);
   }
 
   @override
@@ -53,11 +54,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             ? [
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.push(
+                                    Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const DetailPage()),
+                                              const AuthPage()),
                                     );
                                   },
                                   child: Padding(

@@ -1,7 +1,8 @@
-class ModelMenu {
-  final String nama, deskripsi, harga, image, category;
+class ModelProduct {
+  final String id, nama, deskripsi, harga, image, category;
 
-  ModelMenu({
+  ModelProduct({
+    required this.id,
     required this.nama,
     required this.deskripsi,
     required this.harga,
@@ -9,13 +10,13 @@ class ModelMenu {
     required this.category,
   });
 
-  factory ModelMenu.fromJson(Map<String, dynamic> json) {
-    return ModelMenu(
+  factory ModelProduct.fromJson(Map<String, dynamic> json) {
+    return ModelProduct(
+        id: json['id'],
         nama: json['nama'],
         deskripsi: json['deskripsi'],
         harga: json['harga'],
         image: json['image'],
         category: json['category']);
-        
   }
 }

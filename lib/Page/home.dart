@@ -9,6 +9,7 @@ import 'package:flutter_coffee_application/Page/scan.dart';
 import 'package:flutter_coffee_application/component/Home/promo_body.dart';
 import 'package:flutter_coffee_application/resource/provider/auth/auth_provider.dart';
 import 'package:flutter_coffee_application/resource/provider/data_provider.dart';
+import 'package:flutter_coffee_application/resource/provider/profile_provider.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_coffee_application/style/typhography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,7 +24,7 @@ class Home extends ConsumerStatefulWidget {
 }
 
 class _HomeState extends ConsumerState<Home> {
-  // final users = FirebaseAuth.instance.currentUser;
+  final users = FirebaseAuth.instance.currentUser;
   int _selectedIndex = 0;
   final datad = false;
 
