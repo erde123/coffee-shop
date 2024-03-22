@@ -9,6 +9,7 @@ import 'package:flutter_coffee_application/Page/auth/auth_page.dart';
 import 'package:flutter_coffee_application/Page/profile/detail_page.dart';
 import 'package:flutter_coffee_application/component/profile/iconSosMed.dart';
 import 'package:flutter_coffee_application/resource/provider/auth/auth_provider.dart';
+import 'package:flutter_coffee_application/resource/services/auth/auth_services.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_coffee_application/style/typhography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,8 +22,8 @@ class ProfilePage extends ConsumerStatefulWidget {
 }
 
 class _ProfilePageState extends ConsumerState<ProfilePage> {
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
+  void signUserOut() async {
+    await AuthServices().signOut();
     ref.watch(isLogin.notifier).update((state) => false);
   }
 
