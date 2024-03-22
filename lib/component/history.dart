@@ -16,6 +16,7 @@ class HistoryOrder extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     int itemCount = getTotalItemCount(modelOrder.items);
+    int itemTotalAmount = getTotalAmount(modelOrder.items);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +29,7 @@ class HistoryOrder extends ConsumerWidget {
           height: 16,
         ),
         Text(
-          formatDate(DateTime.now()),
+          formatDate(modelOrder.orderDate),
           style: body1(),
         ),
         SizedBox(
@@ -56,6 +57,14 @@ class HistoryOrder extends ConsumerWidget {
                       "Ice cafe latte",
                       style: body1(),
                     ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      FormatCurrency.convertToIdr(
+                          item.subTotal * item.quantity, 0),
+                      style: body1(),
+                    )
                   ],
                 )
               ],
@@ -81,7 +90,7 @@ class HistoryOrder extends ConsumerWidget {
             SizedBox(width: 10),
             Text(
               FormatCurrency.convertToIdr(
-                int.parse(modelOrder.totalAmount),
+                itemTotalAmount,
                 0,
               ),
               style: h4(color: primary),
@@ -98,5 +107,13 @@ class HistoryOrder extends ConsumerWidget {
       totalCount += item.quantity;
     }
     return totalCount;
+  }
+
+  int getTotalAmount(List<ModelCart> items) {
+    int totalAmount = 0;
+    for (var item in items) {
+      totalAmount += item.quantity * item.subTotal;
+    }
+    return totalAmount;
   }
 }

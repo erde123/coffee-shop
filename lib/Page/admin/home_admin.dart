@@ -6,7 +6,7 @@ import 'package:flutter_coffee_application/Page/admin/scanqr.dart';
 import 'package:flutter_coffee_application/Page/home.dart';
 import 'package:flutter_coffee_application/Page/profile/profile_page.dart';
 import 'package:flutter_coffee_application/component/history.dart';
-import 'package:flutter_coffee_application/resource/provider/admin_provider.dart';
+import 'package:flutter_coffee_application/resource/provider/order_provider.dart';
 import 'package:flutter_coffee_application/style/typhography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -33,12 +33,12 @@ class _HomeAdminState extends ConsumerState<HomeAdmin> {
     BottomNavigationBarItem(
         icon: Icon(Icons.home), label: 'Home', backgroundColor: Colors.white),
     BottomNavigationBarItem(
-        icon: Icon(Icons.qr_code_2_rounded),
-        label: 'QR',
+        icon: Icon(Icons.qr_code_scanner_rounded),
+        label: 'Scan',
         backgroundColor: Colors.white),
     BottomNavigationBarItem(
         icon: Icon(Icons.file_copy),
-        label: 'Pesanan',
+        label: 'History Penjualan',
         backgroundColor: Colors.white),
   ];
 
@@ -95,6 +95,7 @@ class _HomeAdminPageState extends ConsumerState<HomeAdminPage> {
                 child: ListView.builder(
                   itemCount: todayOrderData.length,
                   itemBuilder: (context, index) {
+                    print("DateTime now: ${DateTime.now()}");
                     return Column(
                       children: [
                         Container(

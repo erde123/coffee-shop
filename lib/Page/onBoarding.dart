@@ -28,118 +28,121 @@ class _OnBoardingState extends ConsumerState<OnBoarding> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: primary,
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Stack(
-          children: [
-            Builder(
-              builder: (context) {
-                final double height = MediaQuery.of(context).size.height;
-                return CarouselSlider(
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    height: height,
-                    viewportFraction: 1.0,
-                    enlargeCenterPage: false,
-                  ),
-                  items: imageList
-                      .map((item) => Container(
-                            child: Center(
-                                child: Image.asset(
-                              item,
-                              fit: BoxFit.cover,
-                              height: height,
-                            )),
-                          ))
-                      .toList(),
-                );
-              },
-            ),
-            Positioned(
-              bottom: 0,
-              child: Container(
-                height: MediaQuery.of(context).size.height / 2,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: const [
-                      0.1,
-                      0.2,
-                      0.3,
-                      0.6,
-                    ],
-                    colors: [
-                      Colors.white.withOpacity(0),
-                      Colors.white.withOpacity(0.3),
-                      Colors.white.withOpacity(0.7),
-                      Colors.white,
-                    ],
-                  ),
-                ),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        body: Container(
+          color: primary,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
+            children: [
+              Builder(
+                builder: (context) {
+                  final double height = MediaQuery.of(context).size.height;
+                  return CarouselSlider(
+                    options: CarouselOptions(
+                      autoPlay: true,
+                      height: height,
+                      viewportFraction: 1.0,
+                      enlargeCenterPage: false,
+                    ),
+                    items: imageList
+                        .map((item) => Container(
+                              child: Center(
+                                  child: Image.asset(
+                                item,
+                                fit: BoxFit.cover,
+                                height: height,
+                              )),
+                            ))
+                        .toList(),
+                  );
+                },
               ),
-            ),
-            Positioned(
-              bottom: 50,
-              left: 0,
-              right: 0,
-              child: Column(
-                children: [
-                  ButtonOutline(
-                    onPressed: () {
-                      AuthServices().signInWithGoogle();
-                    },
-                    width: MediaQuery.of(context).size.width - 32,
-                    height: 42,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          backgroundImage:
-                              AssetImage("assets/image/google.png"),
-                          radius: 12,
-                        ),
-                        Text(
-                          "Lanjutkan dengan Google",
-                          style: h3(
-                            color: primary,
-                          ),
-                        ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  height: MediaQuery.of(context).size.height / 2,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: const [
+                        0.1,
+                        0.2,
+                        0.3,
+                        0.6,
+                      ],
+                      colors: [
+                        Colors.white.withOpacity(0),
+                        Colors.white.withOpacity(0.3),
+                        Colors.white.withOpacity(0.7),
+                        Colors.white,
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(foregroundColor: Colors.white),
-                    child: Text(
-                      "Lewati tahap Ini",
-                      style: h3(
-                        color: primary,
+                ),
+              ),
+              Positioned(
+                bottom: 50,
+                left: 0,
+                right: 0,
+                child: Column(
+                  children: [
+                    ButtonOutline(
+                      onPressed: () {
+                        AuthServices().signInWithGoogle();
+                      },
+                      width: MediaQuery.of(context).size.width - 32,
+                      height: 42,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            backgroundImage:
+                                AssetImage("assets/image/google.png"),
+                            radius: 12,
+                          ),
+                          Text(
+                            "Lanjutkan dengan Google",
+                            style: h3(
+                              color: primary,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                            child: Home(),
-                            type: PageTransitionType.rightToLeft),
-                      );
-                    },
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(foregroundColor: Colors.white),
+                      child: Text(
+                        "Lewati tahap Ini",
+                        style: h3(
+                          color: primary,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                              child: Home(),
+                              type: PageTransitionType.rightToLeft),
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

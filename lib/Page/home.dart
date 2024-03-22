@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_coffee_application/Page/menu/menu_page.dart';
 import 'package:flutter_coffee_application/Page/profile/profile_page.dart';
 import 'package:flutter_coffee_application/Page/scan.dart';

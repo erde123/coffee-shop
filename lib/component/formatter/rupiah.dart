@@ -9,7 +9,7 @@ class FormatCurrency {
 
     NumberFormat currencyFormatter = NumberFormat.currency(
       locale: 'id',
-      symbol: 'Rp ',
+      symbol: 'Rp',
       decimalDigits: decimalDigit,
     );
     return currencyFormatter.format(number);

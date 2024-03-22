@@ -6,6 +6,7 @@ import 'package:flutter_coffee_application/component/Menu/menu_body.dart';
 import 'package:flutter_coffee_application/component/Menu/menu_top.dart';
 import 'package:flutter_coffee_application/component/Menu/recom_body.dart';
 import 'package:flutter_coffee_application/resource/provider/data_provider.dart';
+import 'package:flutter_coffee_application/resource/provider/product_provider.dart';
 import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -253,7 +254,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                               child: Divider(),
                             ),
                             data[i].name.toLowerCase() == "recommended"
-                                ? ref.watch(menuProvider(data[i].name)).when(
+                                ? ref.watch(productProvider(data[i].name)).when(
                                       data: (_data) {
                                         if (_data.isEmpty) {
                                           return Container(
@@ -299,7 +300,7 @@ class _ListProdukState extends ConsumerState<ListProduk> {
                                         child: CircularProgressIndicator(),
                                       ),
                                     )
-                                : ref.watch(menuProvider(data[i].name)).when(
+                                : ref.watch(productProvider(data[i].name)).when(
                                       data: (_data) {
                                         if (_data.isEmpty) {
                                           return Container(

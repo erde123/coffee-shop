@@ -8,15 +8,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final apiProvider = Provider<ApiServices>((ref) => ApiServices());
 
-final menuProvider = FutureProvider.family<List<ModelProduct>, String>((ref, category) async {
-  var data = await ref.read(apiProvider).getMenu();
-  print(data);
-  List<ModelProduct> filteredList = data.where((menu) => menu.category == category.toLowerCase()).toList();
-  int count = data.where((menu) => menu.category == category.toLowerCase()).length;
-  ref.watch(countItemProvider.notifier).update((state) => count);
-  return filteredList;
-});
-
 final promoProvider = FutureProvider<List<ModelPromo>>((ref) async {
   return ref.read(apiProvider).getPromo();
 });
@@ -24,5 +15,3 @@ final promoProvider = FutureProvider<List<ModelPromo>>((ref) async {
 final categoryProvider = FutureProvider<List<ModelCategory>>((ref) async {
   return ref.read(apiProvider).getCategory();
 });
-
-final countItemProvider = StateProvider<int>((ref) => 0);

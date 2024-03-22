@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_coffee_application/resource/provider/admin_provider.dart';
+import 'package:flutter_coffee_application/resource/provider/order_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../component/history.dart';

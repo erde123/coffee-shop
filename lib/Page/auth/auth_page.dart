@@ -27,7 +27,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            // Use Future.microtask to execute the update after the widget tree is built
+
             Future.microtask(() {
               ref.read(isLogin.notifier).update((state) => true);
             });
