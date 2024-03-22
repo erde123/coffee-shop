@@ -7,15 +7,21 @@ import 'package:flutter_coffee_application/style/color.dart';
 import 'package:flutter_coffee_application/style/typhography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:nb_utils/nb_utils.dart';
 
+late SharedPreferences sp;
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeSharedPreferences();
   await Firebase.initializeApp(
       name: "coffee-shop-project123",
       options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: MyApp()));
 }
 
+Future<void> initializeSharedPreferences() async {
+  sp = await SharedPreferences.getInstance();
+}
 // void main() {
 //   runApp(const ProviderScope(child: MyApp()));
 //

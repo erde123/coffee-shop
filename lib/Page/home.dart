@@ -15,6 +15,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 
+import '../main.dart';
+
 class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
@@ -173,7 +175,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                                         ),
                                       ),
                                       Text(
-                                        'Ryan David',
+                                        '${sp.getString('fullName')}',
+                                        // 'Ryan David',
                                         style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
@@ -252,7 +255,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                                           width: 8,
                                         ),
                                         Text(
-                                          "94 Poin",
+                                          "${sp.getInt('point')} poin",
+                                          // "point",
                                           style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold,

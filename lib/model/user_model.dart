@@ -1,34 +1,38 @@
 class ModelUser {
-  String? id, name, email, gender, phone, image, roles;
-  String? birthday, createdAt;
-  int? point = 0;
-  //roles
+    String id;
+    String fullName;
+    String email;
+    dynamic gender;
+    String phoneNumber;
+    String image;
+    dynamic dob;
+    DateTime createdAt;
+    int point;
+    String partnerCode;
 
+    ModelUser({
+        required this.id,
+        required this.fullName,
+        required this.email,
+        required this.gender,
+        required this.phoneNumber,
+        required this.image,
+        required this.dob,
+        required this.createdAt,
+        required this.point,
+        required this.partnerCode,
+    });
 
-  ModelUser({
-    required this.id,
-    required this.name,
-    required this.email,
-    this.gender,
-    required this.phone,
-    this.image,
-    this.birthday,
-    this.createdAt,
-    this.point,
-    this.roles,
-  });
-
-  factory ModelUser.fromJson(Map<String, dynamic> json) {
-    return ModelUser(
-        id: json['id'],
-        name: json['name'],
-        email: json['email'],
-        gender: json['gender'],
-        phone: json['phone'],
-        image: json['image'],
-        birthday: json['birthday'],
-        createdAt: json['createdAt'],
-        point: json['point'],
-        roles: json['roles']);
-  }
+    factory ModelUser.fromJson(Map<String, dynamic> json) => ModelUser(
+        id: json["_id"],
+        fullName: json["fullName"],
+        email: json["email"],
+        gender: json["gender"],
+        phoneNumber: json["phoneNumber"],
+        image: json["image"],
+        dob: json["dob"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        point: json["point"],
+        partnerCode: json["partnerCode"],
+    );
 }

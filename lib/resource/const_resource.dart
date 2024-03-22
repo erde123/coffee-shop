@@ -1,1 +1,2 @@
-String url = "api.imavi.";
+String url = "https://api.imavi.org/";
+int apiWaitTime = 10;

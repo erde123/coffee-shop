@@ -27,21 +27,15 @@ class _AuthPageState extends ConsumerState<AuthPage> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-
             Future.microtask(() {
+              User customer = snapshot.data!;
               ref.read(isLogin.notifier).update((state) => true);
+              AuthServices().login(customer);
             });
             return Consumer(
               builder: (context, ref, _) {
                 final userData = ref.watch(profileDataProvider(snapshot.data));
-                return userData.when(
-                  data: (data) {
-                    print("halo user data");
-                    return data.roles == "admin" ? HomeAdmin() : Home();
-                  },
-                  error: (error, stackTrace) => SizedBox(),
-                  loading: () => CircularProgressIndicator(),
-                );
+                return Home();
               },
             );
           } else {

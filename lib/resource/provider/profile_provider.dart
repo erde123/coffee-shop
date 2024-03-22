@@ -7,11 +7,11 @@ final profileDataProvider =
   // await Future.delayed(Duration(milliseconds: 500));
   // return profileExample;
 
-  ModelUser data = await profileServices().fetchLoginData(user);
-    if (data.roles == "admin") {
-    // Update isAdminProvider to true
-    ref.read(isAdminProvider.notifier).state = true;
-  }
+  ModelUser data = await profileServices().fetchProfile();
+  //   if (data.roles == "admin") {
+  //   // Update isAdminProvider to true
+  //   ref.read(isAdminProvider.notifier).state = true;
+  // }
 
   return data;
 });

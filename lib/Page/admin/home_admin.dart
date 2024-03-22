@@ -95,7 +95,6 @@ class _HomeAdminPageState extends ConsumerState<HomeAdminPage> {
                 child: ListView.builder(
                   itemCount: todayOrderData.length,
                   itemBuilder: (context, index) {
-                    print("DateTime now: ${DateTime.now()}");
                     return Column(
                       children: [
                         Container(
